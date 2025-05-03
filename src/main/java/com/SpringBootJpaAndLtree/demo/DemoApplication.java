@@ -30,7 +30,7 @@ public class DemoApplication {
 		timeElapsed = 0L;
 
 		System.out.println();
-        System.out.println("Query with JpaRepository:");
+		System.out.println("Query with JpaRepository:");
 
 		start = Instant.now();
 		DeviceManagementService.runFindDeviceEntity(new String[]{"root.P"});	
@@ -43,7 +43,7 @@ public class DemoApplication {
 		timeElapsed = 0L;
 
 		System.out.println();
-        System.out.println("Query with EntityManager: ");
+		System.out.println("Query with EntityManager: ");
 
 		start = Instant.now();
 		DeviceManagementEntityManagerService.fetchDevicesNatively(new String[]{"root.P"});
