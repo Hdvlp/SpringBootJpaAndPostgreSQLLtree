@@ -8,7 +8,7 @@ import com.SpringBootJpaAndLtree.demo.model.DeviceEntity;
 
 import java.util.List;
 
-public interface DeviceRepository extends JpaRepository<DeviceEntity, Long> {
+public interface DeviceRepository extends JpaRepository<DeviceEntity, Integer> {
 
     @Query(value = "SELECT * FROM devices_resource_tree t WHERE t.path <@ ANY(CAST(?1 AS ltree[]))", nativeQuery = true)
     List<DeviceEntity> findByPathContaining(@Param("paths") String[] paths);
