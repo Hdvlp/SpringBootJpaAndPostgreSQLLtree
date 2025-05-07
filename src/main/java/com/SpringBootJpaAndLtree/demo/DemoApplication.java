@@ -2,6 +2,7 @@ package com.SpringBootJpaAndLtree.demo;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,8 +23,6 @@ public class DemoApplication {
 		Instant start;
 		Instant end;
 		long timeElapsed;
-
-
 
 		start = null;
 		end = null;
@@ -51,6 +50,35 @@ public class DemoApplication {
 		timeElapsed = Duration.between(start, end).toMillis();
 		System.out.println(String.format("Time spent in milliseconds: %d", timeElapsed));
 
+		start = null;
+		end = null;
+		timeElapsed = 0L;
+
+		System.out.println();
+		System.out.println("With PostgreSQL function, simulate unexpected type in fetching: start");
+		start = Instant.now();
+		DeviceManagementEntityManagerService.simulateUnexpectedTypeFetchDevicesNatively(Arrays.asList(new String[]{"root.P"}));
+		end = Instant.now();
+		timeElapsed = Duration.between(start, end).toMillis();
+		System.out.println(String.format("Time spent in milliseconds: %d", timeElapsed));
+		System.out.println("With PostgreSQL function, simulate unexpected type in fetching: end");
+		
+		start = null;
+		end = null;
+		timeElapsed = 0L;
+
+		System.out.println();
+		System.out.println("With PostgreSQL function, simulate expected type in fetching: start");
+		start = Instant.now();
+		DeviceManagementEntityManagerService.simulateExpectedTypeFetchDevicesNatively(new String[]{"root.P"});
+		end = Instant.now();
+		timeElapsed = Duration.between(start, end).toMillis();
+		System.out.println(String.format("Time spent in milliseconds: %d", timeElapsed));
+		System.out.println("With PostgreSQL function, simulate expected type in fetching: end");
+
+		start = null;
+		end = null;
+		timeElapsed = 0L;
 	}
 
 
